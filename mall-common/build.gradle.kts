@@ -3,7 +3,7 @@ plugins{
     id("io.freefair.lombok") version "8.12.1"
     id("maven-publish")
 }
-version = "1.0"
+version = "1.0-SNAPSHOT"
 group = "com.macro.mall"
 java {
     toolchain {

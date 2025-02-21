@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,9 +55,10 @@ public class JwtTokenUtil {
         Claims claims = null;
         try {
             claims = Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token)
-                    .getBody();
+                    .decryptWith(Keys.password(secret.toCharArray()))
+                    .build()
+                    .parseEncryptedClaims(token)
+                    .getPayload();
         } catch (Exception e) {
             LOGGER.info("JWT格式验证失败:{}", token);
         }

@@ -1,91 +1,48 @@
 package com.macro.mall.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
+@Setter
+@Getter
 public class UmsResource implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "资源名称")
+    @Schema(description = "资源名称")
     private String name;
 
-    @ApiModelProperty(value = "资源URL")
+    @Schema(description = "资源URL")
     private String url;
 
-    @ApiModelProperty(value = "描述")
+    @Schema(description = "描述")
     private String description;
 
-    @ApiModelProperty(value = "资源分类ID")
+    @Schema(description = "资源分类ID")
     private Long categoryId;
 
+    @Serial
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", name=").append(name);
-        sb.append(", url=").append(url);
-        sb.append(", description=").append(description);
-        sb.append(", categoryId=").append(categoryId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return getClass().getSimpleName() +
+                " [" +
+                "Hash = " + hashCode() +
+                ", id=" + id +
+                ", createTime=" + createTime +
+                ", name=" + name +
+                ", url=" + url +
+                ", description=" + description +
+                ", categoryId=" + categoryId +
+                ", serialVersionUID=" + serialVersionUID +
+                "]";
     }
 }

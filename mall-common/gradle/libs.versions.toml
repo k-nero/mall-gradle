@@ -7,7 +7,6 @@ logstash = "8.0"
 springFox = "3.0.0"
 pageHelper = "6.1.0"
 huTool = "5.8.36"
-javaServerlet = "4.0.1"
 [libraries]
 spring = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring" }
 springRedis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "spring" }
@@ -20,4 +19,3 @@ huTool = { module = "cn.hutool:hutool-all", version.ref = "huTool" }
 springActuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring" }
 springTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring" }
 springAop = { module = "org.springframework.boot:spring-boot-starter-aop", version.ref = "spring" }
-javaServerlet = { module = "javax.servlet:javax.servlet-api", version.ref = "javaServerlet" }

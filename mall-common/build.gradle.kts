@@ -26,7 +26,6 @@ dependencies {
     implementation(libs.springAop)
     implementation(libs.springTest)
     implementation(libs.springActuator)
-    implementation(libs.javaServerlet)
 }
 
 tasks.jar {

@@ -1,5 +1,5 @@
 plugins{
-    id("application")
+    id("java-library")
     id("io.freefair.lombok") version "8.12.1"
     id("maven-publish")
 }
@@ -21,5 +21,12 @@ dependencies {
     implementation(libs.mybatisGen)
     implementation(libs.mysql)
     implementation(libs.ibatis)
-    implementation(libs.swaggerAnnotations)
+    implementation(libs.springFox)
+}
+
+tasks.jar {
+    manifest {
+        attributes(mapOf("Implementation-Title" to project.name,
+            "Implementation-Version" to project.version))
+    }
 }

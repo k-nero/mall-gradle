@@ -1,5 +1,5 @@
 plugins{
-    id("java-library")
+    id("application")
     id("io.freefair.lombok") version "8.12.1"
     id("maven-publish")
 }
@@ -16,13 +16,10 @@ java {
 }
 dependencies {
     implementation("com.macro.mall:mall-common:1.0-SNAPSHOT")
-    implementation(libs.spring)
-    implementation(libs.springSecurity)
-    implementation(libs.springRedis)
-    implementation(libs.springAop)
-    implementation(libs.springTest)
-    implementation(libs.springActuator)
-    implementation(libs.huTool)
-    implementation(libs.jjwt)
-    implementation(libs.javaAnnotation)
+    implementation(libs.pageHelper)
+    implementation(libs.druidSpring)
+    implementation(libs.mybatisGen)
+    implementation(libs.mysql)
+    implementation(libs.ibatis)
+    implementation(libs.swaggerAnnotations)
 }

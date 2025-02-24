@@ -1,9 +1,15 @@
 package com.macro.mall.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Setter
+@Getter
 public class PmsMemberPrice implements Serializable {
     private Long id;
 
@@ -11,66 +17,25 @@ public class PmsMemberPrice implements Serializable {
 
     private Long memberLevelId;
 
-    @ApiModelProperty(value = "会员价格")
+    @Schema(description = "会员价格")
     private BigDecimal memberPrice;
 
     private String memberLevelName;
 
+    @Serial
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public Long getMemberLevelId() {
-        return memberLevelId;
-    }
-
-    public void setMemberLevelId(Long memberLevelId) {
-        this.memberLevelId = memberLevelId;
-    }
-
-    public BigDecimal getMemberPrice() {
-        return memberPrice;
-    }
-
-    public void setMemberPrice(BigDecimal memberPrice) {
-        this.memberPrice = memberPrice;
-    }
-
-    public String getMemberLevelName() {
-        return memberLevelName;
-    }
-
-    public void setMemberLevelName(String memberLevelName) {
-        this.memberLevelName = memberLevelName;
-    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", productId=").append(productId);
-        sb.append(", memberLevelId=").append(memberLevelId);
-        sb.append(", memberPrice=").append(memberPrice);
-        sb.append(", memberLevelName=").append(memberLevelName);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return getClass().getSimpleName() +
+                " [" +
+                "Hash = " + hashCode() +
+                ", id=" + id +
+                ", productId=" + productId +
+                ", memberLevelId=" + memberLevelId +
+                ", memberPrice=" + memberPrice +
+                ", memberLevelName=" + memberLevelName +
+                ", serialVersionUID=" + serialVersionUID +
+                "]";
     }
 }

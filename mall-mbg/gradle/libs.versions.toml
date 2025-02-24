@@ -9,6 +9,7 @@ springFox = "3.0.0"
 mysql = "9.2.0"
 ibatis = "3.0"
 swaggerAnnotations = "2.2.28"
+lombokMBG = "1.0"
 [libraries]
 pageHelper = { module = "com.github.pagehelper:pagehelper", version.ref = "pageHelper" }
 druidSpring = { module = "com.alibaba:druid-spring-boot-starter", version.ref = "druidSpring" }
@@ -16,3 +17,4 @@ mybatisGen = { module = "org.mybatis.generator:mybatis-generator-core", version.
 mysql = { module = "com.mysql:mysql-connector-j", version.ref = "mysql" }
 ibatis = { module = "org.apache.ibatis:ibatis-core", version.ref = "ibatis"}
 springFox = { module = "io.springfox:springfox-boot-starter", version.ref = "springFox" }
+lombokMBG = { module = "com.softwareloop:mybatis-generator-lombok-plugin", version.ref = "lombokMBG" }

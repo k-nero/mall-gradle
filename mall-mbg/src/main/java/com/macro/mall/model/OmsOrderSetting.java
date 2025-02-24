@@ -2,7 +2,11 @@ package com.macro.mall.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class OmsOrderSetting implements Serializable {
     private Long id;
 
@@ -22,54 +26,6 @@ public class OmsOrderSetting implements Serializable {
     private Integer commentOvertime;
 
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getFlashOrderOvertime() {
-        return flashOrderOvertime;
-    }
-
-    public void setFlashOrderOvertime(Integer flashOrderOvertime) {
-        this.flashOrderOvertime = flashOrderOvertime;
-    }
-
-    public Integer getNormalOrderOvertime() {
-        return normalOrderOvertime;
-    }
-
-    public void setNormalOrderOvertime(Integer normalOrderOvertime) {
-        this.normalOrderOvertime = normalOrderOvertime;
-    }
-
-    public Integer getConfirmOvertime() {
-        return confirmOvertime;
-    }
-
-    public void setConfirmOvertime(Integer confirmOvertime) {
-        this.confirmOvertime = confirmOvertime;
-    }
-
-    public Integer getFinishOvertime() {
-        return finishOvertime;
-    }
-
-    public void setFinishOvertime(Integer finishOvertime) {
-        this.finishOvertime = finishOvertime;
-    }
-
-    public Integer getCommentOvertime() {
-        return commentOvertime;
-    }
-
-    public void setCommentOvertime(Integer commentOvertime) {
-        this.commentOvertime = commentOvertime;
-    }
 
     @Override
     public String toString() {

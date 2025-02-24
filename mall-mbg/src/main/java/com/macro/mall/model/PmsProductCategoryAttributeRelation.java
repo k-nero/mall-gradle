@@ -2,7 +2,11 @@ package com.macro.mall.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class PmsProductCategoryAttributeRelation implements Serializable {
     private Long id;
 
@@ -11,30 +15,6 @@ public class PmsProductCategoryAttributeRelation implements Serializable {
     private Long productAttributeId;
 
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getProductCategoryId() {
-        return productCategoryId;
-    }
-
-    public void setProductCategoryId(Long productCategoryId) {
-        this.productCategoryId = productCategoryId;
-    }
-
-    public Long getProductAttributeId() {
-        return productAttributeId;
-    }
-
-    public void setProductAttributeId(Long productAttributeId) {
-        this.productAttributeId = productAttributeId;
-    }
 
     @Override
     public String toString() {

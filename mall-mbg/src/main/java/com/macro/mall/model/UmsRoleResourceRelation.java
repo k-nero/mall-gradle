@@ -2,7 +2,11 @@ package com.macro.mall.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class UmsRoleResourceRelation implements Serializable {
     private Long id;
 
@@ -13,30 +17,6 @@ public class UmsRoleResourceRelation implements Serializable {
     private Long resourceId;
 
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    public Long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
-    }
 
     @Override
     public String toString() {

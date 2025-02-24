@@ -2,7 +2,11 @@ package com.macro.mall.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class UmsIntegrationConsumeSetting implements Serializable {
     private Long id;
 
@@ -19,46 +23,6 @@ public class UmsIntegrationConsumeSetting implements Serializable {
     private Integer couponStatus;
 
     private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getDeductionPerAmount() {
-        return deductionPerAmount;
-    }
-
-    public void setDeductionPerAmount(Integer deductionPerAmount) {
-        this.deductionPerAmount = deductionPerAmount;
-    }
-
-    public Integer getMaxPercentPerOrder() {
-        return maxPercentPerOrder;
-    }
-
-    public void setMaxPercentPerOrder(Integer maxPercentPerOrder) {
-        this.maxPercentPerOrder = maxPercentPerOrder;
-    }
-
-    public Integer getUseUnit() {
-        return useUnit;
-    }
-
-    public void setUseUnit(Integer useUnit) {
-        this.useUnit = useUnit;
-    }
-
-    public Integer getCouponStatus() {
-        return couponStatus;
-    }
-
-    public void setCouponStatus(Integer couponStatus) {
-        this.couponStatus = couponStatus;
-    }
 
     @Override
     public String toString() {

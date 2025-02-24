@@ -22,6 +22,7 @@ dependencies {
     implementation(libs.mysql)
     implementation(libs.ibatis)
     implementation(libs.springFox)
+    implementation(libs.lombokMBG)
 }
 
 tasks.jar {

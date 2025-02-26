@@ -17,6 +17,7 @@ import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.filter.ParsedFilter;
+import org.elasticsearch.search.aggregations.bucket.nested.NestedAggregationBuilder;
 import org.elasticsearch.search.aggregations.bucket.nested.ParsedNested;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
@@ -38,10 +39,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -80,8 +78,8 @@ public class EsProductServiceImpl implements EsProductService {
     public EsProduct create(Long id) {
         EsProduct result = null;
         List<EsProduct> esProductList = productDao.getAllEsProductList(id);
-        if (esProductList.size() > 0) {
-            EsProduct esProduct = esProductList.get(0);
+        if (!esProductList.isEmpty()) {
+            EsProduct esProduct = esProductList.getFirst();
             result = productRepository.save(esProduct);
         }
         return result;
@@ -160,7 +158,7 @@ public class EsProductServiceImpl implements EsProductService {
         }
         nativeSearchQueryBuilder.withSorts(SortBuilders.scoreSort().order(SortOrder.DESC));
         NativeSearchQuery searchQuery = nativeSearchQueryBuilder.build();
-        LOGGER.info("DSL:{}", searchQuery.getQuery().toString());
+        LOGGER.info("DSL:{}", Objects.requireNonNull(searchQuery.getQuery()));
         SearchHits<EsProduct> searchHits = elasticsearchRestTemplate.search(searchQuery, EsProduct.class);
         if(searchHits.getTotalHits()<=0){
             return new PageImpl<>(ListUtil.empty(),pageable,0);
@@ -173,8 +171,8 @@ public class EsProductServiceImpl implements EsProductService {
     public Page<EsProduct> recommend(Long id, Integer pageNum, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         List<EsProduct> esProductList = productDao.getAllEsProductList(id);
-        if (esProductList.size() > 0) {
-            EsProduct esProduct = esProductList.get(0);
+        if (!esProductList.isEmpty()) {
+            EsProduct esProduct = esProductList.getFirst();
             String keyword = esProduct.getName();
             Long brandId = esProduct.getBrandId();
             Long productCategoryId = esProduct.getProductCategoryId();
@@ -204,7 +202,7 @@ public class EsProductServiceImpl implements EsProductService {
             builder.withFilter(boolQueryBuilder);
             builder.withPageable(pageable);
             NativeSearchQuery searchQuery = builder.build();
-            LOGGER.info("DSL:{}", searchQuery.getQuery().toString());
+            LOGGER.info("DSL:{}", Objects.requireNonNull(searchQuery.getQuery()));
             SearchHits<EsProduct> searchHits = elasticsearchRestTemplate.search(searchQuery, EsProduct.class);
             if(searchHits.getTotalHits()<=0){
                 return new PageImpl<>(ListUtil.empty(),pageable,0);
@@ -229,7 +227,7 @@ public class EsProductServiceImpl implements EsProductService {
         //聚合搜索分类名称
         builder.withAggregations(AggregationBuilders.terms("productCategoryNames").field("productCategoryName"));
         //聚合搜索商品属性，去除type=0的属性
-        AbstractAggregationBuilder aggregationBuilder = AggregationBuilders.nested("allAttrValues","attrValueList")
+        AbstractAggregationBuilder<NestedAggregationBuilder> aggregationBuilder = AggregationBuilders.nested("allAttrValues","attrValueList")
                 .subAggregation(AggregationBuilders.filter("productAttrs",QueryBuilders.termQuery("attrValueList.type",1))
                         .subAggregation(AggregationBuilders.terms("attrIds")
                                 .field("attrValueList.productAttributeId")
@@ -248,7 +246,7 @@ public class EsProductServiceImpl implements EsProductService {
      */
     private EsProductRelatedInfo convertProductRelatedInfo(SearchHits<EsProduct> response) {
         EsProductRelatedInfo productRelatedInfo = new EsProductRelatedInfo();
-        Map<String, Aggregation> aggregationMap = ((Aggregations)response.getAggregations().aggregations()).asMap();
+        Map<String, Aggregation> aggregationMap = ((Aggregations) Objects.requireNonNull(response.getAggregations()).aggregations()).asMap();
         //设置品牌
         Aggregation brandNames = aggregationMap.get("brandNames");
         List<String> brandNameList = new ArrayList<>();
@@ -278,7 +276,7 @@ public class EsProductServiceImpl implements EsProductService {
             }
             attr.setAttrValues(attrValueList);
             if(!CollectionUtils.isEmpty(attrNames)){
-                String attrName = attrNames.get(0).getKeyAsString();
+                String attrName = attrNames.getFirst().getKeyAsString();
                 attr.setAttrName(attrName);
             }
             attrList.add(attr);

@@ -11,6 +11,7 @@ rootProject.name = "mall"
 includeBuild("mall-common")
 includeBuild("mall-security")
 includeBuild("mall-mbg")
+includeBuild("mall-search")
 
 
 

@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
+import java.util.List;
+
 /**
  * 搜索商品ES操作类
  * Created by macro on 2018/6/19.
@@ -20,4 +22,11 @@ public interface EsProductRepository extends ElasticsearchRepository<EsProduct, 
      */
     Page<EsProduct> findByNameOrSubTitleOrKeywords(String name, String subTitle, String keywords,Pageable page);
 
+    void deleteById(Long id);
+
+    Iterable<EsProduct> saveAll(List<EsProduct> esProductList);
+
+    void deleteAll(List<EsProduct> esProductList);
+
+    EsProduct save(EsProduct esProduct);
 }

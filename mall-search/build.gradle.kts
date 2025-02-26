@@ -43,3 +43,10 @@ tasks.jar {
             "Implementation-Version" to project.version))
     }
 }
+publishing {
+    publications {
+        create<MavenPublication>("mallSearch") {
+            from(components["java"])
+        }
+    }
+}

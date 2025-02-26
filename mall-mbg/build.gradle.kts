@@ -31,3 +31,11 @@ tasks.jar {
             "Implementation-Version" to project.version))
     }
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mallMbg") {
+            from(components["java"])
+        }
+    }
+}

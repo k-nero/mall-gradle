@@ -26,3 +26,16 @@ dependencies {
     implementation(libs.jjwt)
     implementation(libs.javaAnnotation)
 }
+tasks.jar {
+    manifest {
+        attributes(mapOf("Implementation-Title" to project.name,
+            "Implementation-Version" to project.version))
+    }
+}
+publishing {
+    publications {
+        create<MavenPublication>("mallSecurity") {
+            from(components["java"])
+        }
+    }
+}
